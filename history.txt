@@ -1,0 +1,15 @@
+apt install lvm2
+fdisk /dev/sdb
+fdisk /dev/sdc
+fdisk /dev/sdd
+lsblk
+pvcreate /dev/sdb4
+pvcreate /dev/sdc1
+pvcreate /dev/sdd1
+vgcreate Datos /dev/sdb4
+vgextend Datos /dev/sdc1
+vgextend Datos /dev/sdd1
+vgs
+lvcreate -L 1G -n www Datos
+lvcreate -L 4G -n salvas Datos
+lvextend -L +1G /dev/Datos/www
